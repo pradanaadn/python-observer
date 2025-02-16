@@ -41,3 +41,26 @@ To see the observer implementation in action:
 
 ```bash
 python main.py
+
+```
+
+
+
+## Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant Main as main.py
+    participant Subject as Subject
+    participant LogObs as LogObserver
+    participant PrintObs as PrintObserver
+
+    Main->>Subject: create instance
+    Main->>Subject: subscribe(LogObserver)
+    Main->>Subject: subscribe(PrintObserver)
+    Main->>Subject: notify("Haloo semua !")
+    Subject->>LogObs: update("Haloo semua !")
+    Subject->>PrintObs: update("Haloo semua !")
+    Main->>Subject: unsubscribe(LogObserver)
+    Main->>Subject: notify("Ciao!")
+    Subject->>PrintObs: update("Ciao!")
